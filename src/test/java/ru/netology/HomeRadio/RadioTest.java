@@ -109,4 +109,27 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    public void shouldReturnWrightChannel() {
+        Radio wave = new Radio();
+
+        wave.setChannel(-5);
+
+        int expected = 0;
+        int actual = wave.getChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnWrightChannel2() {
+        Radio wave = new Radio();
+
+        wave.setChannel(15);
+
+        int expected = 0;
+        int actual = wave.getChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
