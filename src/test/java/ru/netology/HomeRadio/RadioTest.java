@@ -110,24 +110,26 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldReturnWrightChannel() {
+    public void shouldReturnCorrectChannelIfUnderMin() {
         Radio wave = new Radio();
 
         wave.setChannel(-5);
+        wave.nextChannel();
 
-        int expected = 0;
+        int expected = 1;
         int actual = wave.getChannel();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldReturnWrightChannel2() {
+    public void shouldReturnCorrectChannelIfAboveMax() {
         Radio wave = new Radio();
 
         wave.setChannel(15);
+        wave.prevChannel();
 
-        int expected = 0;
+        int expected = 9;
         int actual = wave.getChannel();
 
         Assertions.assertEquals(expected, actual);
