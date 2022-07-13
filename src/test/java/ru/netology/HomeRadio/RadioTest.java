@@ -134,4 +134,30 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldReturnCorrectVolumeIfUnderMin() {
+        Radio volume = new Radio();
+
+        volume.setCurrentVolume(-5);
+        volume.decreaseVolume();
+
+        int expected = 0;
+        int actual = volume.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnCorrectVolumeIfAboveMax() {
+        Radio volume = new Radio();
+
+        volume.setCurrentVolume(15);
+        volume.increaseVolume();
+
+        int expected = 1;
+        int actual = volume.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
