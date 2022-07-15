@@ -2,37 +2,50 @@ package ru.netology.HomeRadio;
 
 public class Radio {
     private int currentVolume;
+    private int minVolume = 0;
+    private int maxVolume = 100;
+
     private int channel;
+    private int amountChannel = 10;
+    private int minChannel = 0;
+    private int maxChannel = amountChannel - 1;
+
+    public Radio() {
+    }
+
+    public Radio(int amountChannel) {
+        maxChannel = amountChannel - 1;
+    }
 
     public int getChannel() {
         return channel;
     }
 
     public void setChannel(int newChannel) {
-        if (newChannel < 0) {
+        if (newChannel < minChannel) {
             return;
         }
-        if (newChannel > 9) {
+        if (newChannel > maxChannel) {
             return;
         }
         channel = newChannel;
     }
 
     public void nextChannel() {
-        if (channel < 9) {
+        if (channel < maxChannel) {
             channel++;
         }
-        if (channel == 9) {
-            channel = 0;
+        if (channel == maxChannel) {
+            channel = minChannel;
         }
     }
 
     public void prevChannel() {
-        if (channel > 0) {
+        if (channel > minChannel) {
             channel--;
         }
-        if (channel == 0) {
-            channel = 9;
+        if (channel == minChannel) {
+            channel = maxChannel;
         }
     }
 
@@ -41,26 +54,24 @@ public class Radio {
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentVolume > 10) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
         currentVolume = newCurrentVolume;
     }
 
     public void increaseVolume() {
-        if (currentVolume < 10) {
+        if (currentVolume < maxVolume) {
             currentVolume++;
         }
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
+        if (currentVolume > minVolume) {
             currentVolume--;
         }
     }
-
-
 }
