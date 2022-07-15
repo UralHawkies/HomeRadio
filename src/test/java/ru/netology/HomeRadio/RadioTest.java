@@ -22,10 +22,10 @@ public class RadioTest {
     public void shouldNotIncreaseVolumeIfMax() {
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(10);
+        volume.setCurrentVolume(100);
         volume.increaseVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -152,11 +152,63 @@ public class RadioTest {
     public void shouldReturnCorrectVolumeIfAboveMax() {
         Radio volume = new Radio();
 
-        volume.setCurrentVolume(15);
+        volume.setCurrentVolume(115);
         volume.increaseVolume();
 
         int expected = 1;
         int actual = volume.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchToNextChannelParam(){
+        Radio wave = new Radio(50);
+
+        wave.setChannel(25);
+        wave.nextChannel();
+
+        int expected = 26;
+        int actual = wave.getChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSwitchToPrevChannelParam() {
+        Radio wave = new Radio(50);
+
+        wave.setChannel(25);
+        wave.prevChannel();
+
+        int expected = 24;
+        int actual = wave.getChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnCorrectChannelIfAboveMaxParam() {
+        Radio wave = new Radio(50);
+
+        wave.setChannel(75);
+        wave.nextChannel();
+
+        int expected = 1;
+        int actual = wave.getChannel();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnCorrectChannelIfUnderMinParam(){
+        Radio wave = new Radio(50);
+
+        wave.setChannel(-15);
+        wave.prevChannel();
+
+        int expected = 49;
+        int actual = wave.getChannel();
 
         Assertions.assertEquals(expected, actual);
     }
